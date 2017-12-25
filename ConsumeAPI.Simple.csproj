@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <PackageId>ConsumeAPI.Simple</PackageId>
+    <PackageVersion>1.4.1-beta</PackageVersion>
+    <Authors>Neville Nazerane</Authors>
+    <Description>
+      Standard library to consume web apis created with netcore.simple
+    </Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>
+      - Added EndingURL string that will be added in the end of every url by default
+    </PackageReleaseNotes>
+    <PackageTags>consumeAPI netcore.simple</PackageTags>
+    <!--<PackageIconUrl>http://netcoresimple.azurewebsites.net/content/themes/icon.png</PackageIconUrl>-->
+    <PackageProjectUrl>http://netcoresimple.azurewebsites.net</PackageProjectUrl>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    
+    <PackageReference Include="netcore.simple.core" Version="1.2.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Net.Http">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.5\Profile\Profile111\System.Net.Http.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
