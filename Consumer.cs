@@ -17,6 +17,8 @@ namespace ConsumeAPI.Simple
 
         public string EndingURL { get; set; }
 
+        public string BearerToken { get; set; }
+
         public Consumer(string BaseURL, long MaxResponseContentBufferSize = 256000)
         {
             Client = new HttpClient {
@@ -51,6 +53,8 @@ namespace ConsumeAPI.Simple
             if (BaseURL == null) BaseURL = this.BaseURL;
             var json = JsonConvert.SerializeObject(obj);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
+            if (BearerToken != null)
+                content.Headers.Add("Authorization", $"Bearer {BearerToken}");
             var result = await func(BaseURL + path + EndingURL, content);
             return result;
         }
