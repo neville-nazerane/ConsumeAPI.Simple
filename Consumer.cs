@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace ConsumeAPI.Simple
 {
     public class Consumer : IDisposable
     {
+        private string _bearerToken;
 
         public HttpClient Client { get; private set; }
 
@@ -17,11 +19,20 @@ namespace ConsumeAPI.Simple
 
         public string EndingURL { get; set; }
 
-        public string BearerToken { get; set; }
+        public string BearerToken
+        {
+            get => _bearerToken;
+            set
+            {
+                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", value);
+                _bearerToken = value;
+            }
+        }
 
         public Consumer(string BaseURL, long MaxResponseContentBufferSize = 256000)
         {
-            Client = new HttpClient {
+            Client = new HttpClient
+            {
                 MaxResponseContentBufferSize = MaxResponseContentBufferSize
             };
             this.BaseURL = BaseURL;
@@ -53,8 +64,8 @@ namespace ConsumeAPI.Simple
             if (BaseURL == null) BaseURL = this.BaseURL;
             var json = JsonConvert.SerializeObject(obj);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            if (BearerToken != null)
-                content.Headers.Add("Authorization", $"Bearer {BearerToken}");
+            //if (BearerToken != null)
+            //    content.Headers.Add("Authorization", $"Bearer {BearerToken}");
             var result = await func(BaseURL + path + EndingURL, content);
             return result;
         }

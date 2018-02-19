@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <PackageId>ConsumeAPI.Simple</PackageId>
-    <PackageVersion>1.4.3-beta</PackageVersion>
+    <PackageVersion>1.4.4-beta</PackageVersion>
     <Authors>Neville Nazerane</Authors>
     <Description>
       Standard library to consume web apis created with netcore.simple
     </Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>
-      - Added JWT header
+      - Bug Fix: JWT header
     </PackageReleaseNotes>
     <PackageTags>consumeAPI netcore.simple</PackageTags>
     <!--<PackageIconUrl>http://netcoresimple.azurewebsites.net/content/themes/icon.png</PackageIconUrl>-->
