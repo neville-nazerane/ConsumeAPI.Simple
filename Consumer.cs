@@ -12,10 +12,19 @@ namespace ConsumeAPI.Simple
     public class Consumer : IDisposable
     {
         private string _bearerToken;
+        private string _baseURL;
 
         public HttpClient Client { get; private set; }
 
-        public string BaseURL { get; set; }
+        public string BaseURL
+        {
+            get => _baseURL;
+            set
+            {
+                Client.BaseAddress = new Uri(_baseURL);
+                _baseURL = value;
+            }
+        }
 
         public string EndingURL { get; set; }
 
